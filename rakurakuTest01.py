@@ -56,7 +56,7 @@ if __name__ == '__main__':
 
     # url="https://laboratory.kazuuu.net/wp-content/uploads/2020/10/mov_hts-samp003.mp4"
 
-    with urllib.request.urlopen(req) as input_file, open('sample2.zip','wb') as output_file:
+    with urllib.request.urlopen(req) as input_file, open('/Users/tkanyama/Google ドライブ/Work/情報システムWG/経理課関連/顧客データ/sample2.zip','wb') as output_file:
         print("ダウンロード中")
         copyfileobj(input_file, output_file)
         print("ダウンロードが完了しました。")
