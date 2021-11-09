@@ -110,6 +110,7 @@ def search_by_hojinmei_sample(appid,hojinmei,jis2=False,mode="2"):
     # 送信＋結果の処理
     with urllib.request.urlopen(requrl) as response:
         # 応答形式に応じて戻りデータをデコードする
+
         res_data = response.read()
         enc = "shift_jis" if jis2 else "utf-8"
         content = res_data.decode(enc)
