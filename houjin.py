@@ -173,7 +173,7 @@ if __name__ == '__main__':
     appid = "KbR2V9TieJ7um"
     hojinbango = "5120905004673"
     # hojinmei ="一般財団法人日本建築総合試験所"
-    hojinmei = "りそな銀行"
+    hojinmei = "株式会社りそな銀行"
 
     # print_hojinjoho_sample(appid,hojinbango,jis2=False)
 
