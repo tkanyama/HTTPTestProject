@@ -1,41 +1,43 @@
 import requests
 import urllib.parse
 
-file_path_name = '/Users/kanyama/Google ドライブ/Work/情報システムWG/経理課関連/顧客データ/cust_20211110.csv'
+file_path_name = '/Users/tkanyama/Google ドライブ/Work/情報システムWG/経理課関連/顧客データ/顧客20211112.csv'
 file_path_name2 = urllib.parse.quote(file_path_name)
 #POSTするURL設定
 post_url = "https://ta.eco-serv.jp/gbrc/api/v1/customers/imports"
 
 #POSTするデータ設定
-# data = {[{"data_col1": "data1-1",
-#           "data_col2": "data2-1",
-#           "data_col3": "data3-1"},
-#          {"data_col1": "data1-2",
-#           "data_col2": "data2-2",
-#           "data_col3": "data3-2"},
-#          {"data_col1": "data1-3",
-#           "data_col2": "data2-3",
-#           "data_col3": "data3-3"}
-#          ]}
+
+# data = {"json":("",{"ispdatenfo": 0,
+#             "updateBlank": 2,
+#             "importProcessName": "顧客データ取込サンプル",
+#             "skipFirst": 1,
+#             "settingId": 5
+#          },"application/json")}
 # json_data = { "col1": "val1",
 #               "col2": "val2",
 #               "col3": "val3",
 #               "col4": data
 #             }
 #POSTするファイルsの読込
-# files = { "image_file": open(file_path_name, 'rb') }#ヘッダー設定
+# files = { "files[0]": ("顧客20211112.csv",open(file_path_name, 'r', encoding='shift_jis'),'text/csv') }#ヘッダー設定
+files = { "json":("",{"ispdatenfo": "0",
+            "updateBlank": "2",
+            "importProcessName": "顧客データ取込サンプル",
+            "skipFirst": "1",
+            "settingId": "5"
+         },"application/json"),
+    "file": ("顧客20211112.csv",open(file_path_name, 'r', encoding='shift_jis'),'text/csv') }#ヘッダー設定
 headers = {
-            'X-WB-apitoken': 'AZsH5M76XPXASjHAkEcIGOKtfjUL46CXrpadiQJfh9srDghuGLp6hxXC0DTfegbK',
-            'Content-Type': 'multipart/form-data' ,
-            'Content-Disposition': 'form-data; name="files[0]" ; filename="' + file_path_name + '"' ,
-            'Content-Type': 'text/csv'
+            'X-WB-apitoken': 'AZsH5M76XPXASjHAkEcIGOKtfjUL46CXrpadiQJfh9srDghuGLp6hxXC0DTfegbK'
             }
 
 #POST送信
 response = requests.post(
     post_url,
-    # data = json_data,
-    # files = files,
+    # data = data,
+    files = files,
     headers = headers)
 
+print(response)
 print("OK")
