@@ -21,8 +21,12 @@ data={ "json":json2 }
 
 #POSTするファイルsの読込
 filepath = "/Users/tkanyama/マイドライブ/Work/情報システムWG/経理課関連/VBAサンプルプログラム3_2/サンプルデータ/顧客データ/顧客データ1.csv"
-files = { "files[0]": ("顧客データ1.csv",open(file_path_name, 'rb'),"text/csv; charset=Windows-31J") }#ヘッダー設定
+with open(file_path_name, 'r' ,encoding='shift_jis') as f:
+    csvdata = f.read()
+readdata = BytesIO(csvdata.encode('shift_jis'))
+files = { "files[0]": ("顧客データ1.csv",readdata,"text/csv; charset=Windows-31J") }
 
+#ヘッダー設定
 headers = {
             "X-WB-apitoken": "AZsH5M76XPXASjHAkEcIGOKtfjUL46CXrpadiQJfh9srDghuGLp6hxXC0DTfegbK"
             }
