@@ -170,7 +170,7 @@ def print_hojinmei_sample(appid,hojinmei,jis2=False):
         print("{}：{}".format(k,info[k]))
 
 if __name__ == '__main__':
-    appid = "KbR2V9TieJ7um"
+    appid = "KY8yGuS6q3T9T"
     hojinbango = "5120905004673"
     # hojinmei ="一般財団法人日本建築総合試験所"
     hojinmei = "株式会社りそな銀行"

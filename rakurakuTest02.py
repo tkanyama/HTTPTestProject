@@ -36,6 +36,6 @@ response = requests.post(
     data = data,
     files = files,
     headers = headers)
-
 print(response.text)
+resdata = json.loads(response.text)
 print("OK")
