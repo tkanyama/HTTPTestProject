@@ -3,6 +3,7 @@ import urllib.parse
 import json
 import time
 import datetime
+import os.path
 
 class SalesForceAPI():
 
@@ -10,11 +11,15 @@ class SalesForceAPI():
         self.tokenReset()
 
     def tokenReset(self):
-        URL = 'https://login.salesforce.com/services/oauth2/token'
-        ID = '3MVG95mg0lk4bath12jXOUhTyb3UT.t5OLHbcUrkAecPCqR9EgZsMFGeL0C0jUtuYhOAWz2BHsq8nEc0RHOUo'
-        SECRET = '028E090C53A14FCAB60943F9F96C0A9BB4F0D3B2155BEB3BC9D29F6F54518DD1'
-        USER = 'kanyama@resilient-unicorn-seo0k2.com'
-        PASSWORD = 'momo1momo1P61C6rfytbA3ahwrSDugOjhV4'
+        # f = open('/Users/tkanyama/マイドライブ/init.txt', 'r')
+        path = os.path.expanduser('~/init.txt')
+        f = open(path, 'r')
+        datalist = f.readlines()
+        URL = datalist[0].replace('\n','')
+        ID = datalist[1].replace('\n', '')
+        SECRET= datalist[2].replace('\n','')
+        USER= datalist[3].replace('\n','')
+        PASSWORD = datalist[4].replace('\n','')
 
         data = {'client_id': ID,
                 'client_secret': SECRET,
