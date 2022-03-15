@@ -5,12 +5,12 @@ import io
 import csv
 
 def create_request1():
-    domain = "ta.eco-serv.jp"
-    acount = "gbrc"
-    key = "事務局"
-    key2 = urllib.parse.quote(key)
-    requrl = "https://{}/{}/api/v1/customers/?keyword={}".format(
-        domain, acount, key2
+    # domain = "ta.eco-serv.jp"
+    # acount = "gbrc"
+    key = "SA"
+    # key2 = urllib.parse.quote(key)
+    requrl = "https://rbthyme.eco-serv.jp/gbrc/api/v1/customers/?keyword={}".format(
+        key
     )
     req = urllib.request.Request(requrl)
     req.add_header('X-WB-apitoken', 'AZsH5M76XPXASjHAkEcIGOKtfjUL46CXrpadiQJfh9srDghuGLp6hxXC0DTfegbK')
@@ -18,9 +18,9 @@ def create_request1():
     return req
 
 def create_request2(id):
-    domain = "ta.eco-serv.jp"
+    domain = "rbthyme.eco-serv.jp"
     acount = "gbrc"
-    requrl = "https://{}/{}/api/v1/customers/?keyword={}".format(
+    requrl = "https://rbthyme.eco-serv.jp/gbrc/api/v1/customers/?keyword={}".format(
         domain, acount, id
     )
     req = urllib.request.Request(requrl)
@@ -28,9 +28,9 @@ def create_request2(id):
     return req
 
 def create_request3(id):
-    domain = "ta.eco-serv.jp"
+    domain = "rbthyme.eco-serv.jp"
     acount = "gbrc"
-    requrl = "https://{}/{}/api/v1/reports/export/download/?keyword={}".format(
+    requrl = "https://rbthyme.eco-serv.jp/gbrc/api/v1/reports/export/download/?keyword={}".format(
         domain, acount, id
     )
     req = urllib.request.Request(requrl)
