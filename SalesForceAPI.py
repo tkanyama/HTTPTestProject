@@ -12,14 +12,25 @@ class SalesForceAPI():
 
     def tokenReset(self):
         # f = open('/Users/tkanyama/マイドライブ/init.txt', 'r')
-        path = os.path.expanduser('~/init.txt')
+        # path = os.path.expanduser('~/init.txt')
+        # f = open(path, 'r')
+        # datalist = f.readlines()
+        # f.close()
+        # URL = datalist[0].rstrip('\n')
+        # ID = datalist[1].rstrip('\n')
+        # SECRET= datalist[2].rstrip('\n')
+        # USER= datalist[3].rstrip('\n')
+        # PASSWORD = datalist[4].rstrip('\n')
+
+        path = os.path.expanduser('~/init.json')
         f = open(path, 'r')
-        datalist = f.readlines()
-        URL = datalist[0].replace('\n','')
-        ID = datalist[1].replace('\n', '')
-        SECRET= datalist[2].replace('\n','')
-        USER= datalist[3].replace('\n','')
-        PASSWORD = datalist[4].replace('\n','')
+        datajson = json.loads(f.read())
+        f.close()
+        URL = datajson['URL']
+        ID = datajson['ID']
+        SECRET = datajson['SECRET']
+        USER = datajson['USER']
+        PASSWORD = datajson['PASSWORD']
 
         data = {'client_id': ID,
                 'client_secret': SECRET,
