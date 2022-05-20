@@ -42,7 +42,11 @@ class mysqlAPI():
 
 if __name__ == '__main__':
     my1 = mysqlAPI()
-    my1.setConfig(user='tkanyama', password='momo1momo1', host='192.168.32.81', database='world')
+    my1.setConfig(user='tkanyama',
+                  password='momo1momo1',
+                  host='192.168.32.81',
+                  database='world'
+                  )
     if my1.connect()==True:
         sql_str1 = "SELECT * FROM city WHERE CountryCode = 'JPN' AND District='Osaka'"
         rows = my1.Select(sql_str=sql_str1)
