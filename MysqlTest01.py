@@ -6,7 +6,7 @@ from mysql.connector import errorcode
 # print(conn.is_connected())
 # conn.close()
 
-class mysqlAPI():
+class MySqlAPI():
     def __init__(self, *args, **kwargs):
         self.config = {
             'user': 'tkanyama',
@@ -15,7 +15,7 @@ class mysqlAPI():
             'database': 'world'
         }
 
-    def setConfig(self, user='tkanyama', password='momo1momo1', host='192.168.32.81', database='world'):
+    def set_config(self, user='tkanyama', password='momo1momo1', host='192.168.32.81', database='world'):
         self.config = {
             'user': user,
             'password': password,
@@ -31,7 +31,7 @@ class mysqlAPI():
             print(err.msg)
             return False
 
-    def Select(self, sql_str="SELECT * FROM city WHERE CountryCode = 'JPN'"):
+    def select(self, sql_str="SELECT * FROM city WHERE CountryCode = 'JPN'"):
         cur = self.conn.cursor(buffered=True, dictionary=True)
         cur.execute(sql_str)
         rows = cur.fetchall()
@@ -41,15 +41,15 @@ class mysqlAPI():
         self.conn.close()
 
 if __name__ == '__main__':
-    my1 = mysqlAPI()
-    my1.setConfig(user='tkanyama',
-                  password='momo1momo1',
-                  host='192.168.32.81',
-                  database='world'
-                  )
+    my1 = MySqlAPI()
+    my1.set_config(user='tkanyama',
+                   password='momo1momo1',
+                   host='192.168.32.81',
+                   database='world'
+                   )
     if my1.connect()==True:
         sql_str1 = "SELECT * FROM city WHERE CountryCode = 'JPN' AND District='Osaka'"
-        rows = my1.Select(sql_str=sql_str1)
+        rows = my1.select(sql_str=sql_str1)
         print(rows.__len__())
         for row in rows:
             print(row["Name"],row['District'])
