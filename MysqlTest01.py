@@ -47,7 +47,7 @@ if __name__ == '__main__':
                    host='192.168.32.81',
                    database='world'
                    )
-    if my1.connect()==True:
+    if my1.connect():
         sql_str1 = "SELECT * FROM city WHERE CountryCode = 'JPN' AND District='Osaka'"
         rows = my1.select(sql_str=sql_str1)
         print(rows.__len__())
