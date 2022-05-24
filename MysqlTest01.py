@@ -63,10 +63,10 @@ if __name__ == '__main__':
         sql_str1 = "SELECT * FROM city WHERE CountryCode = 'JPN' AND District='Osaka'"
         rows = my1.select(sql_str=sql_str1)
         print(rows.__len__())
-        field = my1.fieldname(tablename='city')
-        n = field.__len__()
+        fields = my1.fieldname(tablename='city')
+        n = fields.__len__()
         i = 0
-        for f in field:
+        for f in fields:
             i += 1
             print(f[0], end='')
             if i < n:
@@ -75,7 +75,7 @@ if __name__ == '__main__':
 
         for row in rows:
             i = 0
-            for f in field:
+            for f in fields:
                 i += 1
                 print(row[f[0]], end='')
                 if i < n:
