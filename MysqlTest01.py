@@ -35,6 +35,16 @@ class MySqlAPI():
         cur = self.conn.cursor(buffered=True, dictionary=True)
         cur.execute(sql_str)
         rows = cur.fetchall()
+
+        # cur.execute("DESC テーブル名")
+        # rows = cur.fetchall()
+        return rows
+
+    def fieldname(self,tablename='city'):
+        # フィールド一覧を取得
+        cur = self.conn.cursor()
+        cur.execute("DESC " + tablename)
+        rows = cur.fetchall()
         return rows
 
     def close(self):
@@ -51,6 +61,13 @@ if __name__ == '__main__':
         sql_str1 = "SELECT * FROM city WHERE CountryCode = 'JPN' AND District='Osaka'"
         rows = my1.select(sql_str=sql_str1)
         print(rows.__len__())
+        field = my1.fieldname(tablename='city')
         for row in rows:
-            print(row["Name"],row['District'])
+            # a = ''
+            for f in field:
+                print(row[f[0]], end='')
+                print(',', end='')
+
+                # a += row[f[0]] + ','
+            print('')
         my1.close()
