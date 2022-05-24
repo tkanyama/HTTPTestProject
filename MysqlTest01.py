@@ -66,18 +66,18 @@ if __name__ == '__main__':
         fields = my1.fieldname(tablename='city')
         n = fields.__len__()
         i = 0
-        for f in fields:
+        for field in fields:
             i += 1
-            print(f[0], end='')
+            print(field[0], end='')
             if i < n:
                 print(' , ', end='')
         print('')
 
         for row in rows:
             i = 0
-            for f in fields:
+            for field in fields:
                 i += 1
-                print(row[f[0]], end='')
+                print(row[field[0]], end='')
                 if i < n:
                     print(' , ', end='')
 
