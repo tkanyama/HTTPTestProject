@@ -1,6 +1,7 @@
 import mysql.connector
 from mysql.connector import errorcode
 
+
 # conn = mysql.connector.connect(user='tkanyama', password='momo1momo1',host ='192.168.32.81', database='world')
 #
 # print(conn.is_connected())
@@ -40,7 +41,7 @@ class MySqlAPI():
         # rows = cur.fetchall()
         return rows
 
-    def fieldname(self,tablename='city'):
+    def fieldname(self, tablename='city'):
         # フィールド一覧を取得
         cur = self.conn.cursor()
         cur.execute("DESC " + tablename)
@@ -49,6 +50,7 @@ class MySqlAPI():
 
     def close(self):
         self.conn.close()
+
 
 if __name__ == '__main__':
     my1 = MySqlAPI()
@@ -62,12 +64,22 @@ if __name__ == '__main__':
         rows = my1.select(sql_str=sql_str1)
         print(rows.__len__())
         field = my1.fieldname(tablename='city')
-        for row in rows:
-            # a = ''
-            for f in field:
-                print(row[f[0]], end='')
-                print(',', end='')
+        n = field.__len__()
+        i = 0
+        for f in field:
+            i += 1
+            print(f[0], end='')
+            if i < n:
+                print(' , ', end='')
+        print('')
 
-                # a += row[f[0]] + ','
+        for row in rows:
+            i = 0
+            for f in field:
+                i += 1
+                print(row[f[0]], end='')
+                if i < n:
+                    print(' , ', end='')
+
             print('')
         my1.close()
