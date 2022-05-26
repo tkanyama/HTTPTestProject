@@ -34,7 +34,7 @@ class MySqlAPI():
             print(err.msg)
             return False
 
-    def select(self, sql_str="SELECT * FROM city WHERE CountryCode = 'JPN'"):
+    def sqlexecute(self, sql_str="SELECT * FROM city WHERE CountryCode = 'JPN'"):
         cur = self.conn.cursor(buffered=True, dictionary=True)
         cur.execute(sql_str)
         rows = cur.fetchall()
@@ -110,7 +110,7 @@ if __name__ == '__main__':
                     print('')
 
                     sql_str1 = "SELECT * FROM {} LIMIT 10".format(tabelname[0])
-                    rows = my1.select(sql_str=sql_str1)
+                    rows = my1.sqlexecute(sql_str=sql_str1)
                     for row in rows:
                         i = 0
                         for field in fields:
