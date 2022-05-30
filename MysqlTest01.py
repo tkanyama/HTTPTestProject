@@ -51,7 +51,7 @@ class MySqlAPI():
         return rows
 
     def tablenames(self):
-        # データベース一覧を取得
+        # テーブル一覧を取得
         cur = self.conn.cursor()
         cur.execute("SHOW TABLES")
         rows = cur.fetchall()
