@@ -58,6 +58,7 @@ class MySqlAPI():
         return rows
 
     def changedatabase(self, database='world'):
+        # データベースの切り替え
         cur = self.conn.cursor()
         cur.execute('USE {}'.format(database))
         # rows = cur.fetchall()
