@@ -12,6 +12,7 @@ class MySqlAPI():
         self.user = 'tkanyama'
         self.password = 'momo1momo1'
         self.host = '192.168.32.81'
+        # self.host = '127.0.0.1'
 
         self.set_config(
             user=self.user, password=self.password, host=self.host)
@@ -82,6 +83,7 @@ if __name__ == '__main__':
     my1.set_config(user='tkanyama',
                    password='momo1momo1',
                    host='192.168.32.81'
+                    # host='127.0.0.1'
                    )
     if my1.connect():
 
