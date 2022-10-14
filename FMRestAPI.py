@@ -6,9 +6,10 @@ import fmrest
 def savePDF(url, fms , filename):
     name, type_, length, response = fms.fetch_file(url, stream=True)
     with open(filename, 'wb') as file_:
-        for chunk in response.iter_content(chunk_size=100000): 
+        for chunk in response.iter_content(chunk_size=1024): 
             if chunk:
                 file_.write(chunk)
+    response.close()
 
 if __name__ == '__main__':
 # IDとパスワードをJsonファイルから読み込む
@@ -43,7 +44,7 @@ if __name__ == '__main__':
     for key in keys:
         print(key, ":",dic[key])
         if key == "PDF":
-            savePDF(dic[key], fms , "/Users/kanyama/test2.pdf")
+            savePDF(dic[key], fms , "/Users/kanyama/PDF/test2.pdf")
 
     res2 = fms.get_records(limit=2)
     n=0
@@ -51,11 +52,13 @@ if __name__ == '__main__':
         dic = res.to_dict()
         keys = res.keys()
         v1 = res.values()
+        id = int(dic["recordId"])
         for key in keys:
             print(key, ":",dic[key])
             if key == "PDF":
                 n += 1
-                savePDF(dic[key], fms , "/Users/kanyama/PDF/test{}.pdf".format(n))
+                # fname = '/Users/kanyama/PDF/test{0:05}.pdf'.format(id)
+                savePDF(dic[key], fms , "/Users/kanyama/PDF/書類{0:05}.pdf".format(id))
 
     find_query = [
                 {"作成日": "09/01/1971","分類": "役員会議事録" }
