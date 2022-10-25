@@ -68,9 +68,27 @@ class SalesForceAPI():
         res = response.text
         return res
 
+    def mataDataRead(self, sObject="Customer_Data1__c"):
+        if datetime.datetime.now() - self.settime > datetime.timedelta(minutes=5):
+            self.tokenReset()
+        # query = 'SELECT Name__c,Address1__c,Section_Name__c,Name FROM Customer_Data1__c WHERE Name__c LIKE \'東海カラー%\''
+        url = self.instance_url + "/services/data/v54.0/sobjects/" + sObject + "/"
+        headers = {'Authorization': self.token_type + ' ' + self.access_token}
+        response = requests.get(
+            url,
+            headers=headers
+        )
+        res = response.text
+        return res
+
 if __name__ == '__main__':
     sf = SalesForceAPI()
     print(sf.access_token)
+    res = sf.mataDataRead("Customer_Data1__c")
+    # print(res)
+    data = json.loads(res)
+    print(json.dumps(data, indent=2))
+
     res = sf.dataread()
     print(res)
     json_dict = json.loads(res)
