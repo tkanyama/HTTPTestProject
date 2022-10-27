@@ -12,17 +12,7 @@ class SalesForceAPI():
         self.tokenReset()
 
     def tokenReset(self):
-        # f = open('/Users/tkanyama/マイドライブ/init.txt', 'r')
-        # path = os.path.expanduser('~/init.txt')
-        # f = open(path, 'r')
-        # datalist = f.readlines()
-        # f.close()
-        # URL = datalist[0].rstrip('\n')
-        # ID = datalist[1].rstrip('\n')
-        # SECRET= datalist[2].rstrip('\n')
-        # USER= datalist[3].rstrip('\n')
-        # PASSWORD = datalist[4].rstrip('\n')
-        #
+    
         # init.jsonファイルからURL,ID,SECRET,USER,PASSWORDを読み込む
         path = os.path.expanduser('~/init.json')
         f = open(path, 'r')
@@ -63,11 +53,11 @@ class SalesForceAPI():
         else:
             self.loginOk = False
 
-    def dataread(self):
+    def datareadbyQuerry(self,query):
         if datetime.datetime.now() - self.settime > datetime.timedelta(minutes=5):
             self.tokenReset()
         if self.loginOk:
-            query = 'SELECT Name__c,Address1__c,Section_Name__c,Name FROM Customer_Data1__c WHERE Name__c LIKE \'東海カラー%\''
+            # query = 'SELECT Name__c,Address1__c,Section_Name__c,Name FROM Customer_Data1__c WHERE Name__c LIKE \'東海カラー%\''
             # url = self.instance_url + self.url + "/query/?q=" + query
             # headers = {'Authorization': self.token_type + ' ' + self.access_token}
             response = requests.get(
@@ -229,7 +219,9 @@ if __name__ == '__main__':
         data = json.loads(res)
         print(json.dumps(sf.resourse, indent=4))
 
-        res = sf.dataread()
+    query = 'SELECT Name__c,Address1__c,Section_Name__c,Name FROM Customer_Data1__c WHERE Name__c LIKE \'東海カラー%\'' 
+    res = sf.datareadbyQuerry(query)
+    if res != "":
         print(res)
         json_dict = json.loads(res)
         n = int(json_dict['totalSize'])
